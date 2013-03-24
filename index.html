@@ -29,21 +29,21 @@
     function readAsDataURL(file) {
         var file_reader = new FileReader();
         file_reader.onloadend = function (evt) {
-            console.log("Read as data URL");
-            console.log(evt.target.result);
+            alert("Read as data URL");
+            alert(evt.target.result);
         };
         file_reader.readAsDataURL(file);
     }
     function readAsText(file) {
         var file_reader = new FileReader();
         file_reader.onloadend = function (evt) {
-            console.log("Read as text");
-            console.log(evt.target.result);
+            alert("Read as text");
+           alert(evt.target.result);
         };
         file_reader.readAsText(file);
     }
     function fail(evt) {
-        console.log(evt.target.error.code);
+       alert(evt.target.error.code);
     }
       </script>
   </head>
