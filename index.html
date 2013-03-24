@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FileReader Example</title>
+    <script type="text/javascript" charset="utf-8" src="phonegap-1.3.0.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+        // Wait for PhoneGap to load
+        //
+        function onLoad() {
+            document.addEventListener("deviceready", onDeviceReady, false);
+        }
+
+ // PhoneGap is ready
+    //
+    function onDeviceReady() {
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+    }
+    function gotFS(fileSystem) {
+        fileSystem.root.getFile("prijava_ispita/test.pdf", null, gotFileEntry, fail);
+    }
+    function gotFileEntry(fileEntry) {
+        fileEntry.file(gotFile, fail);
+    }
+    function gotFile(file){
+        readDataUrl(file);
+        readAsText(file);
+    }
+    function readAsDataURL(file) {
+        var file_reader = new FileReader();
+        file_reader.onloadend = function (evt) {
+            console.log("Read as data URL");
+            console.log(evt.target.result);
+        };
+        file_reader.readAsDataURL(file);
+    }
+    function readAsText(file) {
+        var file_reader = new FileReader();
+        file_reader.onloadend = function (evt) {
+            console.log("Read as text");
+            console.log(evt.target.result);
+        };
+        file_reader.readAsText(file);
+    }
+    function fail(evt) {
+        console.log(evt.target.error.code);
+    }
+      </script>
+  </head>
+  <body>
+    <h1>Example</h1>
+    <p>Read File</p>
+  </body>
+</html>
