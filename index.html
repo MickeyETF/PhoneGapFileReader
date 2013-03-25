@@ -1,48 +1,62 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>FileReader Example</title>
+     <html>
+     <head>
+      <title>FileReader Example</title>
+
     <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
     <script type="text/javascript" charset="utf-8">
-    
-document.addEventListener("deviceready", onDeviceReady, false);
-        
 
- // PhoneGap is ready
+    // Wait for PhoneGap to load
+    //
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+    // PhoneGap is ready
     //
     function onDeviceReady() {
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
     }
+
     function gotFS(fileSystem) {
-        fileSystem.root.getFile("prijava_ispita/test.pdf", null, gotFileEntry, fail);
+        fileSystem.root.getFile("prijava_ispita/test.pdf", {create: true}, gotFileEntry, fail);
     }
+
     function gotFileEntry(fileEntry) {
         fileEntry.file(gotFile, fail);
     }
+
     function gotFile(file){
         readDataUrl(file);
         readAsText(file);
     }
-    function readAsDataURL(file) {
-        var file_reader = new FileReader();
-        file_reader.onloadend = function (evt) {
-            alert("Read as data URL");
-            alert(evt.target.result);
+
+    function readDataUrl(file) {
+        var reader = new FileReader();
+        reader.onloadend = function(evt) {
+            console.log("Read as data URL");
+            console.log(evt.target.result);
         };
-        file_reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
     }
+
     function readAsText(file) {
-        var file_reader = new FileReader();
-        file_reader.onloadend = function (evt) {
-            alert("Read as text");
-           alert(evt.target.result);
+        var reader = new FileReader();
+        reader.onloadend = function(evt) {
+            console.log("Read as text");
+            console.log(evt.target.result);
         };
-        file_reader.readAsText(file);
+        reader.readAsText(file);
+        reader.onload = function(){
+    element.innerHTML = reader.result
+}
     }
+
     function fail(evt) {
-       alert(evt.target.error.code);
+        console.log(evt.target.error.code);
     }
-      </script>
+
+    </script>
   </head>
   <body>
     <h1>Example</h1>
