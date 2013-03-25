@@ -19,7 +19,7 @@
     }
 
     function gotFS(fileSystem) {
-        fileSystem.root.getFile("prijava_ispita/test.txt", {create: true}, gotFileEntry, fail);
+        fileSystem.root.getFile("test.txt", {create: true}, gotFileEntry, fail);
     }
 
     function gotFileEntry(fileEntry) {
