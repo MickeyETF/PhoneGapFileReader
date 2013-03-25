@@ -8,16 +8,12 @@
 
     // Wait for Cordova to load
     //
-    function onLoad() {
-        document.addEventListener("deviceready", onDeviceReady, false);
+    function Read() {
+       alert("Ovde sam");
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+       
     }
 
-    // Cordova is ready
-    //
-    function onDeviceReady() {
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-        alert("Ovde sam");
-    }
 
     function gotFS(fileSystem) {
         fileSystem.root.getFile("test.txt", null, gotFileEntry, fail);
@@ -53,10 +49,12 @@
     function fail(evt) {
         alert(evt.target.error.code);
     }
+    
     </script>
   </head>
   <body>
     <h1>Example</h1>
     <p>Read File</p>
+    <button onclick="Read()">Klikni me</button>
   </body>
 </html>
