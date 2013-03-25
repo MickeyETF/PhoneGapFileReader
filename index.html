@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-     <html>
-     <head>
-      <title>FileReader Example</title>
+<html>
+  <head>
+    <title>FileReader Example</title>
 
     <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
     <script type="text/javascript" charset="utf-8">
 
-    // Wait for PhoneGap to load
+    // Wait for Cordova to load
     //
     function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
     }
 
-    // PhoneGap is ready
+    // Cordova is ready
     //
     function onDeviceReady() {
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
     }
 
     function gotFS(fileSystem) {
-        fileSystem.root.getFile("test.txt", {create: true}, gotFileEntry, fail);
+        fileSystem.root.getFile("test.txt", null, gotFileEntry, fail);
     }
 
     function gotFileEntry(fileEntry) {
@@ -34,8 +34,8 @@
     function readDataUrl(file) {
         var reader = new FileReader();
         reader.onloadend = function(evt) {
-            alert("Read as data URL");
-            alert(evt.target.result);
+            console.log("Read as data URL");
+            console.log(evt.target.result);
         };
         reader.readAsDataURL(file);
     }
@@ -43,17 +43,14 @@
     function readAsText(file) {
         var reader = new FileReader();
         reader.onloadend = function(evt) {
-            alert("Read as text");
-            alert(evt.target.result);
+            console.log("Read as text");
+            console.log(evt.target.result);
         };
         reader.readAsText(file);
-        reader.onload = function(){
-    element.innerHTML = reader.result
-}
     }
 
     function fail(evt) {
-        alert(evt.target.error.code);
+        console.log(evt.target.error.code);
     }
 
     </script>
