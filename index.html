@@ -25,7 +25,7 @@
 
     function gotFile(file)
     {
-        alert(window.appRootDir.fullPath);
+        alert(fileSystem.root.getFile("prijava_ispita/test.txt"));
         readDataUrl(file);
         readAsText(file);
     }
