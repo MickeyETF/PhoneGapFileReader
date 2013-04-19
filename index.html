@@ -15,13 +15,23 @@
     }
 
 
-    function gotFS(fileSystem) {
+    /*function gotFS(fileSystem) {
         fileSystem.root.getFile("prijava_ispita/test.txt", null, gotFileEntry, fail);
     }
 
     function gotFileEntry(fileEntry) {
         fileEntry.file(gotFile, fail);
+    }*/
+    function gotFS(fileSystem) {
+        fileSystem.root.getFile("prijava_ispita/test.txt", null, gotFileEntry, fail);
     }
+
+    function gotFileEntry(fileEntry) {
+        //fileEntry.file(gotFile, fail);
+        alert("Putanja je")
+       alert(fileEntry.fullPath);
+    }
+
 
     function gotFile(file)
     {
