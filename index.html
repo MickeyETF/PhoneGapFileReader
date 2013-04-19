@@ -23,7 +23,9 @@
         fileEntry.file(gotFile, fail);
     }
 
-    function gotFile(file){
+    function gotFile(file)
+    {
+        alert(file);
         readDataUrl(file);
         readAsText(file);
     }
